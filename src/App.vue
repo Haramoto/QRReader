@@ -30,7 +30,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import QRReader from './components/QRReader.vue';
 import axios from 'axios';
 
-const version = '0.0.8';
+const version = '0.0.9';
 
 @Component({ components: { QRReader } })
 export default class App extends Vue {
@@ -51,7 +51,7 @@ export default class App extends Vue {
   }
 
   reload() {
-    window.location.reload();
+    window.location.reload(true);
   }
 }
 </script>
