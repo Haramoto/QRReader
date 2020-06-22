@@ -1,0 +1,10 @@
+declare module 'vuetify/lib';
+// declare module 'element-ui';
+// declare module 'element-ui/lib/locale';
+// declare module 'element-ui/lib/locale/lang/ja';
+// declare module 'vue-virtual-scroll-list';
+// declare module 'vue-numeric';
+// declare module 'filepond-plugin-image-resize';
+// declare module 'filepond-plugin-image-transform';
+// declare module 'filepond-plugin-image-exif-orientation';
+// declare module 'jquery';

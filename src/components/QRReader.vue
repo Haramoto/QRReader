@@ -48,8 +48,6 @@ export default class HelloWorld extends Vue {
   private msg = '';
 
   private url = false;
-  // private width = 640;
-  // private height = 480;
 
   private async mounted() {
     this.ctx = this.canvas.getContext('2d');
@@ -60,12 +58,13 @@ export default class HelloWorld extends Vue {
         video: {
           facingMode: { exact: 'environment' },
           frameRate: { ideal: 10, max: 15 },
-          // width: this.width,
-          // height: this.height
         },
       });
       this.video.srcObject = stream;
       this.video.onloadedmetadata = (e: any) => {
+        // ビデオのサイズ取得後にCanvasサイズをリサイズ
+        this.canvas.width = this.video.videoWidth;
+        this.canvas.height = this.video.videoHeight;
         this.video.play();
         this.checkImage();
       };
@@ -76,21 +75,24 @@ export default class HelloWorld extends Vue {
   }
 
   private checkImage() {
+    const code_width = this.canvas.width;
+    const code_height = this.canvas.height;
+    // QRコードのデコード領域
+    const code_wh = Math.min(code_width, code_height);
+
     // 取得している動画をCanvasに描画
     this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
 
     // Canvasからデータを取得
-    const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+    const imageData = this.ctx.getImageData(0, 0, code_width, code_height);
 
     // jsQRに渡す
-    const code = jsQR(imageData.data, this.canvas.width, this.canvas.height);
+    const code = jsQR(imageData.data, code_width, code_height);
 
     // QRコードの読み取りに成功したらモーダル開く
     // 失敗したら再度実行
     if (code) {
       console.log(code);
-      // window.location.href = code.data;
-      //			openModal(code.data);
       this.dialog = true;
       this.msg = code.data;
       this.url = /^https?:\/\/[\w!?/\+\-_~=;\.,*&@#$%\(\)\’\[\]]+/.test(this.msg);
