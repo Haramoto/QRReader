@@ -4,6 +4,7 @@
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
+  "orientation": "portrait",
   "Scope": "https://www.waguri-soft.com/webapp/QRReader/",
   "start_url": "https://www.waguri-soft.com/webapp/QRReader/",
   "icons": [

@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           urlPattern: /.+\.(js|css|woff)$/,
-          handler: 'NetworkFirst',
+          handler: 'CacheFirst',
           options: {
             cacheName: 'qr-reader-dependent-cache',
             expiration: {
@@ -31,7 +31,7 @@ module.exports = {
         },
         {
           urlPattern: /.+\.(png)$/,
-          handler: 'NetworkFirst',
+          handler: 'CacheFirst',
           options: {
             cacheName: 'qr-reader-image-cache',
             expiration: {
